@@ -8,11 +8,11 @@ class Lazycopilot < Formula
   depends_on "go" => :build
 
   def install
-    system "make", "build"
-    bin.install "bin/lazycopilot"
+    system "go", "build", "-o", "lazycopilot", "./main.go"
+    bin.install "lazycopilot"
   end
 
   test do
-    assert_match "lazycopilot", shell_output("#{bin}/lazycopilot --help", 0)
+    assert_match "LazyCopilot", shell_output("#{bin}/lazycopilot --help")
   end
 end
